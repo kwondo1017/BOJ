@@ -1,11 +1,11 @@
 # BOJ
 BOJ 문제풀이 저장소
-# Baekjoon Online Judge
 
+## Baekjoon Online Judge
 백준 알고리즘 문제 풀이 저장소입니다.
 
-## Language
+### Language
 - Java
 
-## Profile
+### Profile
 https://www.acmicpc.net/user/kwondo1017
