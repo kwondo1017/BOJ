@@ -1,61 +1,22 @@
 package Silver;
 
-import java.util.Scanner;
-
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
 public class BOJ1463 {
+    public static void main(String[] args) throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine().trim());
 
-    public static double logJudge(int num) {
-        double x = Math.log(num) / Math.log(3);
-        double y = Math.log(num) / Math.log(2);
+        int[] dp = new int[n + 1];
+        dp[1] = 0;
 
-        int ix = (int) x;
-        int iy = (int) y;
-
-        x -= ix;
-        y -= iy;
-
-        return x-y;
-    }
-
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        sc.close();
-
-        int cnt = 0; // 연산 카운트
-
-        if (n==1) 
-            cnt = 0;
-        else if (n==2 || n==3){
-            cnt = n-1;
-        } else {
-            while (true){
-                if (n==1) 
-                    break;
-
-                if (logJudge(n) < 0) {
-                    if (n%3 == 0){
-                        n /= 3;
-                        cnt++;
-                    } else {
-                        n--;
-                        cnt++;
-                    }
-                }
-
-                if (logJudge(n) > 0) {
-                    if (n%2 == 0){
-                        n /= 2;
-                        cnt++;
-                    } else {
-                        n--;
-                        cnt++;
-                    }
-                }
-            }
+        for (int i = 2; i <= n; i++) {
+            dp[i] = dp[i - 1] + 1;
+            if (i % 2 == 0) dp[i] = Math.min(dp[i], dp[i / 2] + 1);
+            if (i % 3 == 0) dp[i] = Math.min(dp[i], dp[i / 3] + 1);
         }
 
-        System.out.println(cnt);
+        System.out.println(dp[n]);
     }
 }
